@@ -1,5 +1,5 @@
 clc; clear;
-%Σχεδιασμός διανυσμάτων σε σφαίρα
+%Draw vectors in a sphere
 figure(1)
 hold on;
 for i=1:1:100
@@ -9,17 +9,17 @@ for i=1:1:100
     quiver3(1,cos(phi).*sin(th),sin(th).*sin(phi),cos(th));
 end
 
-%Μέθοδος Monte Carlo για 3Δ και στάσιμα σημεία
+%Monte Carlo in 3D
 
-A=[1.5 -0.5 0; -0.5 1.5 0; 0 0 3];    %Δοσμένος πίνακας Α(3x3)
+A=[1.5 -0.5 0; -0.5 1.5 0; 0 0 3];    %Given table Ξ‘(3x3)
 
 for i=1:1000000
- phi(i)=rand()*pi;                    %Δημιουργία ψευδοτυχαίου αριθμού από 0 έως 2π για τη γωνία φ
- costheta(i)=-1+rand()*2;             %Δημιουργία ψευδοτυχαίου αριθμού από -1 έως 1 για το cosθ
- sintheta(i)=sqrt(1-(costheta(i)).^2);%Υπολογισμός του sinθ
- h=[cos(phi(i)).*sintheta(i); sin(phi(i)).*sintheta(i); costheta(i)]; %Διάνυσμα η πάνω στη σφαίρα
- k=h';                                %Ανάστροφο του διανύσματος η
- R(i)=k*A*h;                          %Πίνακας R 
+ phi(i)=rand()*pi;                    %Random Number Generator from 0 to 2Ο€ for phi angle
+ costheta(i)=-1+rand()*2;             %Random Number Generator from -1 to 1 for cos(theta)
+ sintheta(i)=sqrt(1-(costheta(i)).^2);%Calculate sin(theta)
+ h=[cos(phi(i)).*sintheta(i); sin(phi(i)).*sintheta(i); costheta(i)]; %Vecto heta on sphere
+ k=h';                                %heta'
+ R(i)=k*A*h;                          % R table
  
 end
 figure(2)
